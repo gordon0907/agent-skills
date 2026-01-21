@@ -6,8 +6,9 @@
 4. Prefer Pythonic patterns and straightforward control flow.
 5. Order code (e.g., classes, functions, constants) in a conventional, logical sequence; choose the optimal ordering instead of mirroring the user prompt unless the user specifies otherwise.
 6. Prefer built-in collection types for type hints (list, dict, tuple, set). Import from typing only when necessary.
-7. Do not add a shebang line or encoding declaration unless the user explicitly asks.
-8. Follow the formatting style shown below. If not covered here, follow the official PEP recommendations, and if still ambiguous, choose the most commonly used conventional style.
+7. Add type hints when inference is unclear (for example, empty collection initialization), but avoid redundant annotations that reduce clarity.
+8. Do not add a shebang line or encoding declaration unless the user explicitly asks.
+9. Follow the formatting style shown below. If not covered here, follow the official PEP recommendations, and if still ambiguous, choose the most commonly used conventional style.
 
 ## Formatting example placeholder
 
@@ -18,7 +19,6 @@ Notes:
 - Comments use no trailing period
 - Docstrings are complete sentences and end with a period
 """
-
 
 DEFAULT_LIMIT: int = 10  # Inline comment, no period
 
@@ -47,7 +47,7 @@ def format_user(name: str, tags: list[str] | None = None) -> str:
     cleaned_name = name.strip()
 
     # Normalize None to an empty list
-    tag_list = tags or []
+    tag_list: list[str] = tags or []
 
     suffix = f" ({', '.join(tag_list)})" if tag_list else ""
     return f"{cleaned_name}{suffix}"
