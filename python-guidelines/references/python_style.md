@@ -1,7 +1,7 @@
 # Python Style Reference
 
 1. Write concise, clean, nicely formatted code.
-2. Add concise, helpful comments for maintainability and readability.
+2. Add concise, helpful comments where appropriate, e.g., on code blocks or conditional branches, to improve readability and maintainability.
 3. Prefer conventional, Pythonic naming and structure. Avoid poor names (e.g., single-letter variables), except in common short-scope conventions (e.g., i/j for loops, x/y for coordinates, f for file handles, e for exceptions).
 4. Prefer Pythonic patterns and straightforward control flow.
 5. Order code (e.g., classes, functions, constants) in a conventional, logical sequence; choose the optimal ordering instead of mirroring the user prompt unless the user specifies otherwise.
