@@ -4,11 +4,12 @@
 2. Add concise, helpful comments where appropriate, e.g., on code blocks or conditional branches, to improve readability and maintainability.
 3. Prefer conventional, Pythonic naming and structure. Avoid poor names (e.g., single-letter variables), except in common short-scope conventions (e.g., i/j for loops, x/y for coordinates, f for file handles, e for exceptions).
 4. Prefer Pythonic patterns and straightforward control flow.
-5. Order code (e.g., classes, functions, constants) in a conventional, logical sequence; choose the optimal ordering instead of mirroring the user prompt unless the user specifies otherwise.
-6. Prefer built-in collection types for type hints (list, dict, tuple, set). Import from typing only when necessary.
-7. Add type hints when inference is unclear (e.g., empty collection initialization), but avoid redundant annotations that reduce clarity.
-8. Do not add a shebang line or encoding declaration unless the user explicitly asks.
-9. Follow the formatting style shown below. If not covered here, follow the official PEP recommendations, and if still ambiguous, choose the most commonly used conventional style.
+5. Prefer f-strings for string interpolation over other formatting styles (e.g., %-style formatting, `str.format()`, and `string.Template`).
+6. Order code (e.g., classes, functions, constants) in a conventional, logical sequence; choose the optimal ordering instead of mirroring the user prompt unless the user specifies otherwise.
+7. Prefer built-in collection types for type hints (list, dict, tuple, set). Import from typing only when necessary.
+8. Add type hints when inference is unclear (e.g., empty collection initialization), but avoid redundant annotations that reduce clarity.
+9. Do not add a shebang line or encoding declaration unless the user explicitly asks.
+10. Follow the formatting style shown below. If not covered here, follow the official PEP recommendations, and if still ambiguous, choose the most commonly used conventional style.
 
 ## Formatting example placeholder
 
