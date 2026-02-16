@@ -1,17 +1,38 @@
 # Python Style Reference
 
-1. Write concise, clean, nicely formatted code.
-2. Add concise, helpful comments where appropriate, e.g., on code blocks or conditional branches, to improve readability and maintainability.
-3. Prefer conventional, Pythonic naming and structure. Avoid poor names (e.g., single-letter variables), except in common short-scope conventions (e.g., i/j for loops, x/y for coordinates, f for file handles, e for exceptions).
-4. Prefer Pythonic patterns and straightforward control flow.
-5. Prefer f-strings for string interpolation over other formatting styles (e.g., %-style formatting, `str.format()`, and `string.Template`).
-6. Order code (e.g., classes, functions, constants) in a conventional, logical sequence; choose the optimal ordering instead of mirroring the user prompt unless the user specifies otherwise.
-7. Prefer built-in collection types for type hints (list, dict, tuple, set). Import from typing only when necessary.
-8. Add type hints when inference is unclear (e.g., empty collection initialization), but avoid redundant annotations that reduce clarity.
-9. Do not add a shebang line or encoding declaration unless the user explicitly asks.
-10. Follow the formatting style shown below. If not covered here, follow the official PEP recommendations, and if still ambiguous, choose the most commonly used conventional style.
+## Core code style
 
-## Formatting example placeholder
+1. Write concise, clean, nicely formatted code.
+2. Prefer Pythonic patterns, conventional naming, and straightforward control flow.
+3. Avoid poor names (e.g., single-letter variables), except in common short-scope conventions (e.g., i/j for loops, x/y for coordinates, f for file handles, e for exceptions).
+4. Add concise, helpful comments where appropriate (e.g., code blocks or conditional branches) to improve readability and maintainability.
+5. Order code (e.g., constants, classes, functions) in a conventional, logical sequence. Do not mirror the user prompt order unless the user explicitly asks.
+
+## String formatting (f-strings)
+
+1. Prefer f-strings for interpolation over %-style formatting, `str.format()`, and `string.Template`.
+2. Use debug-style expressions (`{name=}`) when the rendered output is equivalent to writing the variable name explicitly.
+3. Keep explicit labels when the label text is not the same as the expression.
+4. Use f-string format specifiers when formatting values (including datetimes) instead of separate formatting calls when behavior is equivalent.
+
+Examples:
+- Prefer `f"{request_id=}"` over `f"request_id={request_id}"`.
+- Keep `f"http_status={status_code}"` as-is (do not rewrite to `f"{status_code=}"`).
+- Prefer `f"{created_at:%Y-%m-%d %H:%M:%S}"` over `created_at.strftime("%Y-%m-%d %H:%M:%S")` when used only to build the same string.
+
+## Typing
+
+1. Prefer built-in collection types for type hints (`list`, `dict`, `tuple`, `set`).
+2. Import from `typing` only when necessary.
+3. Add type hints when inference is unclear (e.g., empty collection initialization), but avoid redundant annotations that reduce clarity.
+
+## File-level conventions
+
+1. Do not add a shebang line or encoding declaration unless the user explicitly asks.
+2. Follow the formatting style shown below.
+3. If not covered here, follow official PEP recommendations. If still ambiguous, choose the most commonly used conventional style.
+
+## Full Python Style Example
 
 ```python
 """Minimal formatting example (PEP 8 + common conventions).
