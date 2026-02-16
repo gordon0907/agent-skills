@@ -14,11 +14,13 @@
 2. Use debug-style expressions (`{name=}`) when the rendered output is equivalent to writing the variable name explicitly.
 3. Keep explicit labels when the label text is not the same as the expression.
 4. Use f-string format specifiers when formatting values (including datetimes) instead of separate formatting calls when behavior is equivalent.
+5. In print or log messages, quote code identifiers to distinguish code terms from normal prose. Prefer `!r` (e.g., `f"{name!r}"`) over manual quote wrapping.
 
 Examples:
 - Prefer `f"{request_id=}"` over `f"request_id={request_id}"`.
 - Keep `f"http_status={status_code}"` as-is (do not rewrite to `f"{status_code=}"`).
 - Prefer `f"{created_at:%Y-%m-%d %H:%M:%S}"` over `created_at.strftime("%Y-%m-%d %H:%M:%S")` when used only to build the same string.
+- Prefer `logger.info(f"Skipping {func_name!r}: missing {config_key!r}")` over `logger.info(f"Skipping '{func_name}': missing '{config_key}'")`.
 
 ## Typing
 
