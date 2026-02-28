@@ -23,7 +23,7 @@ The goal is card recommendation quality for real spending scenarios (for example
    - https://www.hongkongcard.com/
    - https://www.moneysmart.hk/
    - https://flyformiles.hk/
-4. If the user directly provides a promotion/offer terms PDF, treat it as a primary source: parse it as deeply as possible and write all extractable details into the card YAML.
+4. If the user directly provides source URL(s) and/or a promotion/offer terms PDF, treat them as primary sources: parse them as deeply as possible and write all extractable details into the card YAML.
 5. For each offer, extract concrete values from sources (rates, caps, min spend, period, eligible merchants/channels/methods, exclusions, registration requirements).
 6. Update the `# References` section in `hk-credit-cards-kb/SKILL.md` as a concise but high-recall index of cards and tags.
 
@@ -36,7 +36,7 @@ The goal is card recommendation quality for real spending scenarios (for example
 4. Every non-trivial claim should be source-backed via `tc_url` and/or `sources`.
 5. Examples in this skill are format examples only. They are not limits on number of offers, fields, or tags.
 6. Offer coverage is open-ended: keep adding active, material offers until sources are exhausted.
-7. When a user-provided terms PDF is available, parse it thoroughly and prefer structured extraction (numeric caps, thresholds, dates, merchant/channel lists, exclusions, registration rules) over generic summaries.
+7. When user-provided URL(s) and/or terms PDF(s) are available, parse them thoroughly and prefer structured extraction (numeric caps, thresholds, dates, merchant/channel lists, exclusions, registration rules) over generic summaries.
 
 # Per-Card YAML Schema
 Each card file should follow this structure. Add more fields if they improve precision/searchability.
