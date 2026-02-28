@@ -1,0 +1,113 @@
+# Card entry fields
+#
+# id:
+#   Stable identifier for the card (recommended: lowercase + hyphens).
+#   Safe for use in file/folder names.
+#
+# name_en:
+#   Conventional card name in English.
+#
+# name_zh:
+#   Conventional card name in Chinese.
+#   Use the English name if no common Chinese name is available.
+#
+# issuer:
+#   Card issuer (bank/institution key or name).
+#
+# payment_network:
+#   International payment network / scheme (e.g. Visa, Mastercard, UnionPay, JCB).
+#
+# official_url:
+#   Official webpage for this card (issuer-owned page).
+
+cards:
+  - id: aeon_jcb
+    name_en: "AEON JCB Credit Card"
+    name_zh: "AEON JCB信用卡"
+    issuer: "AEON"
+    payment_network: "JCB"
+    official_url: "https://www.aeon.com.hk/tc/credit-card/creditcard-jusco-jcb.html?link_id=hk_zh_aeon"
+
+  - id: aeon_wakuwaku
+    name_en: "AEON CARD WAKUWAKU"
+    name_zh: "AEON CARD WAKUWAKU"
+    issuer: "AEON"
+    payment_network: "Mastercard"
+    official_url: "https://www.aeon.com.hk/en/credit-card/creditcard-wakuwaku.html"
+
+  - id: bochk_chill
+    name_en: "BOC Chill Card"
+    name_zh: "中銀Chill Card"
+    issuer: "BOCHK"
+    payment_network: "Mastercard"
+    official_url: "https://www.bochk.com/en/creditcard/details/chillcard.html"
+
+  - id: bochk_go
+    name_en: "BOC Go Card"
+    name_zh: "中銀Go卡"
+    issuer: "BOCHK"
+    payment_network: "UnionPay"
+    official_url: "https://www.bochk.com/en/creditcard/details/gocard.html"
+
+  - id: fubon_in_visa_platinum
+    name_en: "Fubon iN VISA Platinum Card"
+    name_zh: "富邦iN VISA白金卡"
+    issuer: "Fubon Bank (Hong Kong)"
+    payment_network: "Visa"
+    official_url: "https://fubonbank.com.hk/en/cards/credit-card-products/incard.html"
+
+  - id: hangseng_enjoy
+    name_en: "Hang Seng enJoy Visa Platinum Card"
+    name_zh: "恒生enJoy Visa白金卡"
+    issuer: "Hang Seng Bank"
+    payment_network: "Visa"
+    official_url: "https://www.hangseng.com/en-hk/personal/cards/products/co-branded/enjoy-card/"
+
+  - id: hsbc_red
+    name_en: "HSBC Red Credit Card"
+    name_zh: "滙豐Red信用卡"
+    issuer: "HSBC"
+    payment_network: "Mastercard"
+    official_url: "https://www.hsbc.com.hk/credit-cards/products/red/"
+
+  - id: hsbc_student_visa_gold
+    name_en: "HSBC Visa Gold Card for Students"
+    name_zh: "滙豐學生Visa Gold信用卡"
+    issuer: "HSBC"
+    payment_network: "Visa"
+    official_url: "https://www.hsbc.com.hk/credit-cards/products/student-visa-gold/"
+
+  - id: mox_credit
+    name_en: "Mox Credit Card"
+    name_zh: "Mox信用卡"
+    issuer: "Mox"
+    payment_network: "Mastercard"
+    official_url: "https://mox.com/features/mox-credit/"
+
+  - id: primecredit_earnmore_unionpay
+    name_en: "PrimeCredit EarnMORE UnionPay Credit Card"
+    name_zh: "安信EarnMORE銀聯信用卡"
+    issuer: "PrimeCredit"
+    payment_network: "UnionPay"
+    official_url: "https://www.primecredit.com/credit-card/earnmore/"
+
+  - id: primecredit_wewa_unionpay_diamond
+    name_en: "WeWa UnionPay Diamond Card"
+    name_zh: "WeWa銀聯鑽石卡"
+    issuer: "PrimeCredit"
+    payment_network: "UnionPay"
+    official_url: "https://www.wewacard.com/"
+
+  - id: sc_simply_cash_visa
+    name_en: "Standard Chartered Simply Cash Visa Card"
+    name_zh: "渣打Simply Cash Visa卡"
+    issuer: "Standard Chartered"
+    payment_network: "Visa"
+    official_url: "https://www.sc.com/hk/credit-cards/simplycash/"
+
+  - id: sc_smart
+    name_en: "Standard Chartered Smart Credit Card"
+    name_zh: "渣打Smart信用卡"
+    issuer: "Standard Chartered"
+    payment_network: "Visa"
+    official_url: "https://www.sc.com/hk/credit-cards/smart/"
