@@ -36,8 +36,8 @@ cards:
     official_url: "https://www.aeon.com.hk/en/credit-card/creditcard-wakuwaku.html"
 
   - id: bochk_chill
-    name_en: "BOC Chill Card"
-    name_zh: "中銀Chill Card"
+    name_en: "BOC Chill World Mastercard"
+    name_zh: "中銀Chill World萬事達卡"
     issuer: "BOCHK"
     payment_network: "Mastercard"
     official_url: "https://www.bochk.com/en/creditcard/details/chillcard.html"
