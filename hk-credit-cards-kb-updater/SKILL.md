@@ -1,141 +1,85 @@
 ---
 name: hk-credit-cards-kb-updater
-description: Use when updating hk-credit-cards-kb with detailed, source-backed card offers and high-recall retrieval tags.
+description: Use when updating hk-credit-cards-kb by dumping promo_guide_url HTML and writing simplified per-card promotion YAML files.
 ---
 
 # Purpose
-This skill maintains `hk-credit-cards-kb`, a static knowledge base for Hong Kong credit cards.
-The knowledge base focuses on promotions and offers, and also includes key card attributes such as fees and other notable features.
+This skill updates `hk-credit-cards-kb` by extracting promotion details from source pages and writing per-card YAML files under `hk-credit-cards-kb/references/`.
 
-# Scope Priority
-Prioritize offers in this order:
-1. Ongoing spending promotions (`消費` promotions): merchant/channel/payment-method/category based rebates, cashback, points, miles, or discounts.
-2. Recurring card benefits that are useful for regular spend decisions.
-3. Welcome offers (include them, but place them after ongoing spending promotions).
+# Inputs
+1. `references/cards.yaml` is the source of card metadata and target card list.
+2. For each card, `promo_guide_url` is the default primary source.
+3. User-provided URL(s), PDF(s), or other source files are allowed as additional priority sources.
 
-The goal is card recommendation quality for real spending scenarios (for example, "Which card for TamJai?"), not only onboarding offers.
-
-# Workflow
-1. Read [`references/cards.yaml`](references/cards.yaml) for the card list to maintain.
-2. Create or update per-card YAML files under `hk-credit-cards-kb/references/`.
-3. For each card, prioritize official issuer pages and official terms PDFs. You may also use trusted aggregator sites for discovery/cross-checking:
-   - https://hkcashrebate.com/
-   - https://www.hongkongcard.com/
-   - https://www.moneysmart.hk/
-   - https://flyformiles.hk/
-4. If the user directly provides source URL(s) and/or a promotion/offer terms PDF, treat them as primary sources: parse them as deeply as possible and write all extractable details into the card YAML.
-5. For each offer, extract concrete values from sources (rates, caps, min spend, period, eligible merchants/channels/methods, exclusions, registration requirements).
-6. Update the `# References` section in `hk-credit-cards-kb/SKILL.md` as a concise but high-recall index of cards and tags.
-
-# Data Quality Requirements
-1. Do not write vague placeholders when exact values are available.
-   - Bad: "monthly caps apply"
-   - Good: "monthly spend cap HKD 3,571; monthly cashback cap HKD 250"
-2. If a key value is not found from available sources, use `null` for the field and explain briefly in `restrictions`.
-3. Keep monetary values as numbers in HKD where possible (for example `3571`, not `"HK$3,571"` in numeric fields).
-4. Every non-trivial claim should be source-backed via `tc_url` and/or `sources`.
-5. Examples in this skill are format examples only. They are not limits on number of offers, fields, or tags.
-6. Offer coverage is open-ended: keep adding active, material offers until sources are exhausted.
-7. When user-provided URL(s) and/or terms PDF(s) are available, parse them thoroughly and prefer structured extraction (numeric caps, thresholds, dates, merchant/channel lists, exclusions, registration rules) over generic summaries.
-
-# Per-Card YAML Schema
-Each card file should follow this structure. Add more fields if they improve precision/searchability.
-```
-id:
-  Stable identifier for the card. Must be unique and match the ID in references/cards.yaml.
-
-name_en / name_zh:
-  Conventional card names.
-
-issuer:
-  Bank/institution name (or key).
-
-payment_network:
-  International payment network / scheme.
-  Allowed examples: Visa, Mastercard, UnionPay, JCB.
-
-official_url:
-  Issuer-owned product page for the card.
-
-annual_fee_hkd:
-  Annual fee in HKD (number). Use 0 if waived as standard.
-  If fee varies by variant, omit and use annual_fee_notes.
-
-annual_fee_notes:
-  Free text notes when fee is conditional or variant-based.
-
-offers:
-  List of current/curated offers. No fixed length limit.
-  Put ongoing spending promotions first, then welcome offers.
-  Each offer:
-    - title: short label
-    - offer_type: one of [spending, recurring-benefit, welcome, installment, points]
-    - description: include concrete value(s), not generic wording
-    - reward_type: cashback | points | miles | discount | mixed
-    - reward_rate_percent: number or null
-    - reward_cap_hkd: number or null
-    - min_spend_hkd: number or null
-    - spend_cap_hkd: number or null
-    - spend_cap_period: monthly | campaign | transaction | null
-    - payment_methods: list (e.g. ["Apple Pay", "Card Present"]) or []
-    - eligible_merchants: list of merchant names or []
-    - eligible_categories: list (e.g. ["Dining", "Online"]) or []
-    - excluded_merchants: list or []
-    - excluded_categories: list or []
-    - registration_required: true | false | null
-    - restrictions: key conditions, with exact values if available
-    - keywords: query-oriented tokens (EN/ZH, aliases, merchant variants)
-    - tc_url: terms link for the offer
-    - validity: ISO 8601 interval string:
-        "YYYY-MM-DD/YYYY-MM-DD" or "YYYY-MM-DD/PnD" etc.
-
-as_of:
-  Last verified date (string, YYYY-MM-DD).
-
-sources:
-  List of URLs used to populate/verify fields (official preferred).
+# Required Tool Invocation
+Use this exact command format:
+```bash
+.venv/bin/python <SCRIPT_PATH> <URL>
 ```
 
-# Reference Index Format
-In `hk-credit-cards-kb/SKILL.md`, keep one entry per card file with high-recall tags for retrieval.
-Do not cap tag count artificially. Include all useful keywords likely to appear in user queries.
-
-Tag selection rules:
-1. Include issuer and network tags (for example `HSBC`, `Mastercard`).
-2. Include reward-type and mechanism tags (for example `Cashback`, `RewardCash`, `Miles`, `Installment`).
-3. Include payment method tags (for example `Apple Pay`, `Google Pay`, `UnionPay QR`).
-4. Include channel/category tags (for example `Online`, `Dining`, `Supermarket`, `Overseas`, `Japan`).
-5. Include merchant tags where applicable (for example `TamJai`, `譚仔`, `Sushiro`).
-6. Include EN/ZH and common alias variants when they are realistic query terms.
-7. Prefer specific tags over vague tags. `TamJai` is better than only `Dining`.
-
-Example:
-```
-# References
-Use this section as an index of per-card files in `references/*.yaml`.
-Each entry should point to one card YAML file and list concise retrieval tags.
-
-## references/card_id1.yaml
-- network
-- reward-type
-- payment-method
-- category
-- merchant-en
-- merchant-zh
-
-## references/card_id2.yaml
-- network
-- category
-- merchant
-- keyword-variant
+Use this script path from the updater skill root:
+```bash
+SCRIPT_PATH=./scripts/dump_html.py
 ```
 
-# Rules
-1. If a card appears outdated, unavailable, or discontinued, report it to the user.
-2. Keep the `# References` index in `hk-credit-cards-kb/SKILL.md` concise; do not include full card details there.
-3. Do not assume "2-3 offers" or "4 tags" is sufficient. Coverage should match source reality.
-4. If an offer exists but lacks enough structured details, keep it and mark missing numeric fields as `null` with explanation in `restrictions`.
+Always use `.venv/bin/python` because `dump_html.py` depends on Playwright in that environment.
+
+# Update Workflow
+Process cards strictly one by one.
+
+For each card in `references/cards.yaml`:
+1. Read card metadata and target output path `hk-credit-cards-kb/references/<id>.yaml`.
+2. Run the dump script with the card's `promo_guide_url`.
+3. Parse the returned raw HTML and extract all promotion details.
+4. Merge details from user-provided sources if available (URL/PDF/etc.), prioritizing newer and more explicit terms.
+5. Write or update exactly one per-card YAML file.
+6. Move to the next card only after finishing the current card.
+
+Do not batch multiple cards in a single extraction pass.
+
+# HTML Parsing And Information Preservation
+1. Preserve promotion information as losslessly as possible in plain text.
+2. Include all meaningful terms: conditions, thresholds, caps, exclusions, registration requirements, payment methods, merchant scope, category scope, and validity cues.
+3. Ignore irrelevant site metadata (UI boilerplate, tracking, layout-only fragments).
+4. Treat `del` / strikethrough content as obsolete or inactive terms unless the page explicitly states otherwise.
+5. If HTML comments or nearby context clarify a promotion term, use that context when writing the description.
+
+# YAML Output Schema
+Write per-card YAML using this simplified schema:
+
+```yaml
+id: string
+name_en: string
+name_zh: string
+issuer: string
+payment_network: string
+official_url: string
+promo_guide_url: string
+promotions:
+  - description: string
+    tc_url: string | null
+    validity: string | null
+as_of: YYYY-MM-DD
+```
+
+Rules:
+1. `promotions` is the canonical list key.
+2. `tc_url` must be `null` if no terms URL is found.
+3. `validity` must be `null` if no reliable date range can be inferred.
+4. Keep base fields aligned with `references/cards.yaml`.
+
+# Language Rules
+1. Write promotion descriptions in English.
+2. Keep proper nouns and merchant/program names in their original form when translation would reduce precision.
+3. Keep card metadata fields from `references/cards.yaml` as-is, including `name_zh`.
+
+# Quality Bar
+1. Prefer precise and complete wording over short summaries.
+2. Avoid generic statements if concrete terms are present in sources.
+3. If source terms conflict, prefer official terms pages or the latest effective source and reflect uncertainty in the description.
+4. If a card appears discontinued or source content looks stale, report it to the user.
 
 # References
 - [`references/cards.yaml`](references/cards.yaml): list of cards to maintain
-- [`hk-credit-cards-kb/SKILL.md`](hk-credit-cards-kb/SKILL.md): index file to refresh
+- [`scripts/dump_html.py`](scripts/dump_html.py): HTML dump script
+- `hk-credit-cards-kb/references/*.yaml`: output files
