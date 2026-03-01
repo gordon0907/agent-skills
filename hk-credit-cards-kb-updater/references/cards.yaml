@@ -19,6 +19,9 @@
 #
 # official_url:
 #   Official webpage for this card (issuer-owned page).
+#
+# promo_guide_url:
+#   Promotion summary / quick-reference page (懶人包) for this card.
 
 cards:
   - id: aeon_jcb
@@ -27,6 +30,7 @@ cards:
     issuer: "AEON"
     payment_network: "JCB"
     official_url: "https://www.aeon.com.hk/tc/credit-card/creditcard-jusco-jcb.html?link_id=hk_zh_aeon"
+    promo_guide_url: "https://hkcashrebate.com/aeon-card"
 
   - id: aeon_wakuwaku
     name_en: "AEON CARD WAKUWAKU"
@@ -34,6 +38,7 @@ cards:
     issuer: "AEON"
     payment_network: "Mastercard"
     official_url: "https://www.aeon.com.hk/en/credit-card/creditcard-wakuwaku.html"
+    promo_guide_url: "https://hkcashrebate.com/aeon-wakuwaku"
 
   - id: bochk_chill
     name_en: "BOC Chill World Mastercard"
@@ -41,6 +46,7 @@ cards:
     issuer: "BOCHK"
     payment_network: "Mastercard"
     official_url: "https://www.bochk.com/en/creditcard/details/chillcard.html"
+    promo_guide_url: "https://hkcashrebate.com/boc-chill"
 
   - id: bochk_go
     name_en: "BOC Go Card"
@@ -48,6 +54,7 @@ cards:
     issuer: "BOCHK"
     payment_network: "UnionPay"
     official_url: "https://www.bochk.com/en/creditcard/details/gocard.html"
+    promo_guide_url: "https://hkcashrebate.com/boc-go"
 
   - id: fubon_in_visa_platinum
     name_en: "Fubon iN VISA Platinum Card"
@@ -55,6 +62,7 @@ cards:
     issuer: "Fubon Bank (Hong Kong)"
     payment_network: "Visa"
     official_url: "https://fubonbank.com.hk/en/cards/credit-card-products/incard.html"
+    promo_guide_url: "https://hkcashrebate.com/fubon-in"
 
   - id: hangseng_enjoy
     name_en: "Hang Seng enJoy Visa Platinum Card"
@@ -62,6 +70,7 @@ cards:
     issuer: "Hang Seng Bank"
     payment_network: "Visa"
     official_url: "https://www.hangseng.com/en-hk/personal/cards/products/co-branded/enjoy-card/"
+    promo_guide_url: "https://hkcashrebate.com/hsb-enjoy"
 
   - id: hsbc_red
     name_en: "HSBC Red Credit Card"
@@ -69,6 +78,7 @@ cards:
     issuer: "HSBC"
     payment_network: "Mastercard"
     official_url: "https://www.hsbc.com.hk/credit-cards/products/red/"
+    promo_guide_url: "https://hkcashrebate.com/hsbc-red"
 
   - id: hsbc_student_visa_gold
     name_en: "HSBC Visa Gold Card for Students"
@@ -76,6 +86,7 @@ cards:
     issuer: "HSBC"
     payment_network: "Visa"
     official_url: "https://www.hsbc.com.hk/credit-cards/products/student-visa-gold/"
+    promo_guide_url: "https://hkcashrebate.com/hsbc-student"
 
   - id: mox_credit
     name_en: "Mox Credit Card"
@@ -83,6 +94,7 @@ cards:
     issuer: "Mox"
     payment_network: "Mastercard"
     official_url: "https://mox.com/features/mox-credit/"
+    promo_guide_url: "https://hkcashrebate.com/mox-bank"
 
   - id: primecredit_earnmore_unionpay
     name_en: "PrimeCredit EarnMORE UnionPay Credit Card"
@@ -90,6 +102,7 @@ cards:
     issuer: "PrimeCredit"
     payment_network: "UnionPay"
     official_url: "https://www.primecredit.com/credit-card/earnmore/"
+    promo_guide_url: "https://hkcashrebate.com/pc-earnmore"
 
   - id: primecredit_wewa_unionpay_diamond
     name_en: "WeWa UnionPay Diamond Card"
@@ -97,6 +110,7 @@ cards:
     issuer: "PrimeCredit"
     payment_network: "UnionPay"
     official_url: "https://www.wewacard.com/"
+    promo_guide_url: "https://hkcashrebate.com/pc-wewa"
 
   - id: sc_simply_cash_visa
     name_en: "Standard Chartered Simply Cash Visa Card"
@@ -104,6 +118,7 @@ cards:
     issuer: "Standard Chartered"
     payment_network: "Visa"
     official_url: "https://www.sc.com/hk/credit-cards/simplycash/"
+    promo_guide_url: "https://hkcashrebate.com/sc-simply-cash"
 
   - id: sc_smart
     name_en: "Standard Chartered Smart Credit Card"
@@ -111,3 +126,4 @@ cards:
     issuer: "Standard Chartered"
     payment_network: "Visa"
     official_url: "https://www.sc.com/hk/credit-cards/smart/"
+    promo_guide_url: "https://hkcashrebate.com/sc-smart"
